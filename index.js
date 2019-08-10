@@ -36,5 +36,16 @@ app.get('/info', (req, res) => {
     res.send(answer)
 })
 
+app.get(`/persons/:id`, (req, res) => {
+    const id = Number(req.params.id)
+    const  person = persons.find(note => note.id === id)
+
+    if( person ) {
+        res.send(person)
+    } else {
+        res.send(404)
+    }
+})
+
 
 app.listen(3001)
