@@ -1,0 +1,31 @@
+{
+  "name": "backendhelsinkiunicert",
+  "version": "1.0.0",
+  "description": "back end on Node.JS with express",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "watch": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AlekseyVY/backendHelsinkiUniCert.git"
+  },
+  "keywords": [
+    "Node.JS",
+    "express"
+  ],
+  "author": "Aleksey Vasiliev",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AlekseyVY/backendHelsinkiUniCert/issues"
+  },
+  "homepage": "https://github.com/AlekseyVY/backendHelsinkiUniCert#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "nodemon": "^1.19.1"
+  }
+}
