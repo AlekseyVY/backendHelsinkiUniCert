@@ -1,5 +1,8 @@
-express = require('express')
-app = express()
+const express = require('express')
+const app = express()
+const bodyParser = require('body-parser')
+
+app.use(bodyParser.json())
 
 let persons = [
     {
@@ -28,7 +31,7 @@ app.get('/api/persons', (req, resp) => {
     resp.send(persons)
 })
 
-app.get('/info', (req, res) => {
+app.get('/api/info', (req, res) => {
     const answer = {
         name: `Phonebook has info for ${persons.length} people`,
         date: Date()
@@ -36,7 +39,7 @@ app.get('/info', (req, res) => {
     res.send(answer)
 })
 
-app.get(`/persons/:id`, (req, res) => {
+app.get(`/api/persons/:id`, (req, res) => {
     const id = Number(req.params.id)
     const  person = persons.find(note => note.id === id)
 
@@ -47,12 +50,31 @@ app.get(`/persons/:id`, (req, res) => {
     }
 })
 
-app.delete('/persons/:id', (req, res) => {
+app.delete('/api/persons/:id', (req, res) => {
     const id = Number(req.params.id)
     persons = persons.filter(person => person.id !== id)
 
     res.send(204)
 })
 
+const randomId = () => {
+    const rId = Math.random() * 1000
+    return rId
+}
+
+app.post('/api/persons', (req, res) => {
+    const body = req.body
+    if (!body.name){
+        return res.sendStatus(400)
+    }
+    const person = {
+        name: body.name,
+        number: body.number,
+        id: randomId()
+    }
+    persons = persons.concat(person)
+
+    res.send(person)
+})
 
 app.listen(3001)
