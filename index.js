@@ -2,9 +2,10 @@ const express = require('express')
 const app = express()
 const bodyParser = require('body-parser')
 const morgan = require('morgan')
+const cors = require('cors')
 
 app.use(bodyParser.json())
-app.use(morgan('tiny'))
+app.use(cors())
 
 let persons = [
     {
@@ -59,10 +60,7 @@ app.delete('/api/persons/:id', (req, res) => {
     res.send(204)
 })
 
-const randomId = () => {
-    const rId = Math.random() * 1000
-    return rId
-}
+const randomId = () => Math.random() * 1000
 
 app.post('/api/persons', (req, res) => {
     const body = req.body
@@ -89,4 +87,10 @@ app.post('/api/persons', (req, res) => {
     res.send(person)
 })
 
-app.listen(3001)
+app.use(morgan('tiny'))
+
+const PORT = process.env.PORT || 3001
+
+app.listen(PORT, () => {
+    console.log(`server running on port: ${PORT}`)
+})
