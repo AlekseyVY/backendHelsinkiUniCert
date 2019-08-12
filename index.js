@@ -64,14 +64,24 @@ const randomId = () => {
 
 app.post('/api/persons', (req, res) => {
     const body = req.body
-    if (!body.name){
-        return res.sendStatus(400)
+    if (!body.name || !body.number){
+        return (
+        res.status(400).json({
+            error: 'Name or Number are missing check your input'
+        }))
+    }  if  (persons.find(per => per.name === body.name)) {
+        return (
+            res.status(400).json({
+                error: 'Name must be unique'
+            })
+        )
     }
-    const person = {
-        name: body.name,
-        number: body.number,
-        id: randomId()
-    }
+        const person = {
+            name: body.name,
+            number: body.number,
+            id: randomId()
+        }
+
     persons = persons.concat(person)
 
     res.send(person)
