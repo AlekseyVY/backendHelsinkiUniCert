@@ -17,7 +17,6 @@
     const personSchema = new mongoose.Schema({
         name: String,
         number: String,
-        id: Number,
     })
 
     const Person = mongoose.model('Person', personSchema)
@@ -25,7 +24,6 @@
     const person = new Person({
         name: name,
         number: number,
-        id: Math.random() * 1000
     })
 
     if (name && number) {
