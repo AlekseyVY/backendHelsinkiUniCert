@@ -10,7 +10,8 @@
     "build:ui": "rd /s /q build && cd ../phonebookFrontend && npm run build --prod && move build ../backendHelsinkiUniCert",
     "deploy": "git push heroku master",
     "deploy:full": "npm run build:ui && git add . && git commit -m uibuild && git push && npm run deploy",
-    "logs:prod": "heroku logs --tail"
+    "logs:prod": "heroku logs --tail",
+    "lint": "eslint ."
   },
   "repository": {
     "type": "git",
@@ -31,10 +32,12 @@
     "dotenv": "^8.1.0",
     "express": "^4.17.1",
     "mongoose": "^5.6.9",
+    "mongoose-unique-validator": "^2.0.3",
     "morgan": "^1.9.1",
     "node": "^12.8.0"
   },
   "devDependencies": {
+    "eslint": "^6.2.1",
     "nodemon": "^1.19.1"
   }
 }
